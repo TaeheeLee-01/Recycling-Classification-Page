@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI 기반 재활용 분류 도우미 - 사진을 찍거나 업로드하여 재활용품을 자동으로 분류하세요">
+    <meta name="keywords" content="재활용, 분리수거, AI, 이미지 분류, Teachable Machine">
+    <meta name="author" content="Recycling Classification">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="♻️ 재활용 분류 도우미">
+    <meta property="og:description" content="AI 기반 재활용 분류 도우미 - 사진으로 재활용품 분류하기">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="♻️ 재활용 분류 도우미">
+    <meta name="twitter:description" content="AI 기반 재활용 분류 도우미 - 사진으로 재활용품 분류하기">
+    
+    <title>♻️ 재활용 분류 도우미</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>♻️ 재활용 분류 도우미</h1>
+            <p class="subtitle">사진을 찍거나 업로드하여 재활용 분류를 확인하세요</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="cameraBtn" class="btn btn-primary">
+                    📷 카메라로 촬영
+                </button>
+                <button id="uploadBtn" class="btn btn-secondary">
+                    📁 사진 업로드
+                </button>
+                <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="webcamContainer" style="display: none;">
+                <video id="webcam" autoplay playsinline></video>
+                <div class="webcam-controls">
+                    <button id="captureBtn" class="btn btn-primary">📸 촬영하기</button>
+                    <button id="stopCameraBtn" class="btn btn-secondary">❌ 카메라 닫기</button>
+                </div>
+            </div>
+
+            <div id="imageContainer" style="display: none;">
+                <canvas id="canvas"></canvas>
+            </div>
+
+            <div id="resultContainer" style="display: none;">
+                <h2>분류 결과</h2>
+                <div id="predictions"></div>
+                <button id="retryBtn" class="btn btn-secondary">다시 시도</button>
+            </div>
+
+            <div id="loadingIndicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>분석 중...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Teachable Machine</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
